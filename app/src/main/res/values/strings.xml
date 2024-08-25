@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JetpackComposeLectures</string>
+    <string name="title_activity_example_voyager">ExampleVoyager</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
