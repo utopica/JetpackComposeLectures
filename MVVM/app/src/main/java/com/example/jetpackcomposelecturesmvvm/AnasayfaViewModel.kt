@@ -2,28 +2,31 @@ package com.example.jetpackcomposelecturesmvvm
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AnasayfaViewModel : ViewModel() {
 
     var sonuc = MutableLiveData("0")
 
+    var mathrepo = MathRepository()
+
     fun topla(alinanSayi1: String, alinanSayi2: String){
 
-        val sayi1 = alinanSayi1.toInt()
-        val sayi2 = alinanSayi2.toInt()
+        CoroutineScope(Dispatchers.Main).launch{
 
-        val toplam = sayi1 + sayi2
+            sonuc.value = mathrepo.topla(alinanSayi1, alinanSayi2)
 
-        sonuc.value = toplam.toString()
+        } //arayüze yakınsa main, veri ye yakınsak IO
     }
 
     fun carp(alinanSayi1: String, alinanSayi2: String){
 
-        val sayi1 = alinanSayi1.toInt()
-        val sayi2 = alinanSayi2.toInt()
+        CoroutineScope(Dispatchers.Main).launch {
 
-        val carpma = sayi1 * sayi2
+            sonuc.value = mathrepo.carp(alinanSayi1, alinanSayi2)
 
-        sonuc.value = carpma.toString()
+        }
     }
 }
