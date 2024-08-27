@@ -15,7 +15,7 @@
         <activity
             android:name=".week4_3_movies.MoviesApp"
             android:exported="true"
-            android:label="@string/title_activity_movies_app"
+            android:label="Movies"
             android:theme="@style/Theme.JetpackComposeLectures">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +59,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="Hello Android"
             android:theme="@style/Theme.JetpackComposeLectures">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

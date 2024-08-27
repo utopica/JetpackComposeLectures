@@ -13,11 +13,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.MutableLiveData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,7 +29,7 @@ fun Anasayfa(anasayfaViewModel: AnasayfaViewModel){
 
     val tfSayi2 = remember{ mutableStateOf("")}
 
-    val sonuc = remember{ mutableStateOf("0")}
+    val sonuc = anasayfaViewModel.sonuc.observeAsState("0") //live data
 
 
     Scaffold (
@@ -65,16 +67,14 @@ fun Anasayfa(anasayfaViewModel: AnasayfaViewModel){
 
                     anasayfaViewModel.topla(tfSayi1.value, tfSayi2.value)
 
-                    sonuc.value = anasayfaViewModel.sonuc
-
                     }) {
                     Text(text = "Toplama")
                 }
 
                 Button(onClick = {
+
                     anasayfaViewModel.carp(tfSayi1.value, tfSayi2.value)
 
-                    sonuc.value = anasayfaViewModel.sonuc
                 }) {
                     Text(text = "Çarpma")
                 }

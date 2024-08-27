@@ -1,10 +1,11 @@
 package com.example.jetpackcomposelecturesmvvm
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AnasayfaViewModel : ViewModel() {
 
-    var sonuc = "0"
+    var sonuc = MutableLiveData("0")
 
     fun topla(alinanSayi1: String, alinanSayi2: String){
 
@@ -13,7 +14,7 @@ class AnasayfaViewModel : ViewModel() {
 
         val toplam = sayi1 + sayi2
 
-        sonuc = toplam.toString()
+        sonuc.value = toplam.toString()
     }
 
     fun carp(alinanSayi1: String, alinanSayi2: String){
@@ -23,6 +24,6 @@ class AnasayfaViewModel : ViewModel() {
 
         val carpma = sayi1 * sayi2
 
-        sonuc = carpma.toString()
+        sonuc.value = carpma.toString()
     }
 }
