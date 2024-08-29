@@ -74,4 +74,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.6") //movie
     implementation ("com.google.code.gson:gson:2.10")
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1") //kişiler
+    implementation("androidx.activity:activity-ktx:1.6.1")
+
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
+
 }

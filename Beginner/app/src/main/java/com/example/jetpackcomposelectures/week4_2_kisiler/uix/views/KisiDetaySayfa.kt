@@ -1,4 +1,4 @@
-package com.example.jetpackcomposelectures.week4_2_kisiler.uix
+package com.example.jetpackcomposelectures.week4_2_kisiler.uix.views
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -13,29 +13,33 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.jetpackcomposelectures.week4_2_kisiler.data.entity.Kisiler
+import com.example.jetpackcomposelectures.week4_2_kisiler.uix.viewmodel.KisiDetayViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KisiKayitSayfa(){
+fun KisiDetaySayfa(gelenKisi:Kisiler, kisiDetayViewModel: KisiDetayViewModel){
 
     val tfKisiAd = remember {
         mutableStateOf("")
     }
-
     val tfKisiTel = remember {
         mutableStateOf("")
     }
 
-    fun kaydet(kisi_ad: String, kisi_tel:String){
-        Log.e("Kisi Kaydet", "$kisi_ad - $kisi_tel")
+    LaunchedEffect(key1 = true) {
+        tfKisiAd.value = gelenKisi.kisi_ad
+        tfKisiTel.value = gelenKisi.kisi_tel
     }
+
     Scaffold(
-        topBar = { TopAppBar(title = { Text (text = "Kisi Kayit") }) }
+        topBar = { TopAppBar(title = { Text (text = "Kisi Detay") }) }
     ) {
             paddingValues ->
         Column(
@@ -58,8 +62,8 @@ fun KisiKayitSayfa(){
 
             Button(
                 modifier = Modifier.size(250.dp, 50.dp),
-                onClick = { kaydet(tfKisiAd.value, tfKisiTel.value) }) {
-                Text(text = "Kaydet")
+                onClick = { kisiDetayViewModel.guncelle(gelenKisi.kisi_id, tfKisiAd.value, tfKisiTel.value) }) {
+                Text(text = "Guncelle")
             }
         }
     }

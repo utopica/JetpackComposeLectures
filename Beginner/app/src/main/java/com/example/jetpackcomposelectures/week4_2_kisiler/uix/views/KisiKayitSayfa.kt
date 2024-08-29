@@ -1,4 +1,4 @@
-package com.example.jetpackcomposelectures.week4_2_kisiler.uix
+package com.example.jetpackcomposelectures.week4_2_kisiler.uix.views
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -13,35 +13,27 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.jetpackcomposelectures.week4_2_kisiler.data.entity.Kisiler
+import com.example.jetpackcomposelectures.week4_2_kisiler.uix.viewmodel.KisiKayitViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KisiDetaySayfa(gelenKisi:Kisiler){
+fun KisiKayitSayfa(kisiKayitViewModel: KisiKayitViewModel){
 
     val tfKisiAd = remember {
         mutableStateOf("")
     }
+
     val tfKisiTel = remember {
         mutableStateOf("")
     }
 
-    LaunchedEffect(key1 = true) {
-        tfKisiAd.value = gelenKisi.kisi_ad
-        tfKisiTel.value = gelenKisi.kisi_tel
-    }
-
-    fun guncelle(kisi_id:Int, kisi_ad:String, kisi_tel:String){
-        Log.e("Kisi Güncelle", "$kisi_id - $kisi_ad- $kisi_tel")
-    }
     Scaffold(
-        topBar = { TopAppBar(title = { Text (text = "Kisi Detay") }) }
+        topBar = { TopAppBar(title = { Text (text = "Kisi Kayit") }) }
     ) {
             paddingValues ->
         Column(
@@ -64,8 +56,8 @@ fun KisiDetaySayfa(gelenKisi:Kisiler){
 
             Button(
                 modifier = Modifier.size(250.dp, 50.dp),
-                onClick = { guncelle(gelenKisi.kisi_id, tfKisiAd.value, tfKisiTel.value) }) {
-                Text(text = "Guncelle")
+                onClick = { kisiKayitViewModel.kaydet(tfKisiAd.value, tfKisiTel.value) }) {
+                Text(text = "Kaydet")
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.jetpackcomposelectures.week4_2_kisiler.uix
+package com.example.jetpackcomposelectures.week4_2_kisiler.uix.views
 
 import android.util.Log
 import androidx.compose.foundation.clickable
@@ -26,6 +26,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,49 +40,29 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.jetpackcomposelectures.R
 import com.example.jetpackcomposelectures.week4_2_kisiler.data.entity.Kisiler
+import com.example.jetpackcomposelectures.week4_2_kisiler.uix.viewmodel.AnasayfaViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Anasayfa(navController: NavController){
+fun Anasayfa(navController: NavController, anasayfaViewModel: AnasayfaViewModel){
 
-    val aramaYapiliyorMu = remember {
-        mutableStateOf(false)
-    }
+    val aramaYapiliyorMu = remember { mutableStateOf(false) }
 
-    val tf = remember {
-        mutableStateOf("")
-    }
+    val tf = remember { mutableStateOf("") }
 
-    val kisilerListesi = remember {
-        mutableStateListOf<Kisiler>()
-    }
+    val kisilerListesi = anasayfaViewModel.kisilerListesi.observeAsState(listOf())
 
     val scope = rememberCoroutineScope()
 
-    val snackbarHostState = remember {
-        SnackbarHostState()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(key1 = true) { //sayfa her açıldığında çalışır
+
+        anasayfaViewModel.kisileriYukle() //katdetme veya güncellemeden sonra arayüzde kisileri tekrar yükler
     }
 
-    fun ara(aramaKelimesi : String){
-        Log.e("Kişi Ara", aramaKelimesi)
-    }
-
-    fun sil(kisi_id: Int){
-        Log.e("Kisi Sil", kisi_id.toString())
-    }
-
-    LaunchedEffect(key1 = true) { //sayfa açıldığında çalışır
-        val kisi1 = Kisiler(1, "Ahmet", "1111")
-        val kisi2 = Kisiler(2, "Zeynep", "2222")
-        val kisi3 = Kisiler(3, "Beyza", "3333")
-
-        kisilerListesi.add(kisi1)
-        kisilerListesi.add(kisi2)
-        kisilerListesi.add(kisi3)
-
-    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -89,7 +70,7 @@ fun Anasayfa(navController: NavController){
                     if(aramaYapiliyorMu.value){
                         TextField(value = tf.value, onValueChange = {
                             tf.value = it
-                            ara(it)},
+                            anasayfaViewModel.ara(it)},
                             label = {Text(text = "Ara")},
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
@@ -146,16 +127,17 @@ fun Anasayfa(navController: NavController){
 
         ) {
             items(
-                count = kisilerListesi.count(),
+                count = kisilerListesi.value.count(),
                 itemContent = {
-                    val kisi = kisilerListesi[it] //0,1,2
+                    val kisi = kisilerListesi.value[it] //0,1,2
                    Card(modifier = Modifier.padding(all = 5.dp)){
                        Row(
-                           modifier = Modifier.fillMaxWidth()
-                           .clickable {
-                               val kisiJson = Gson().toJson(kisi)
-                               navController.navigate("kisiDetaySayfa/$kisiJson")
-                                      },
+                           modifier = Modifier
+                               .fillMaxWidth()
+                               .clickable {
+                                   val kisiJson = Gson().toJson(kisi)
+                                   navController.navigate("kisiDetaySayfa/$kisiJson")
+                               },
 
                            horizontalArrangement = Arrangement.SpaceBetween,
                            verticalAlignment = Alignment.CenterVertically
@@ -177,7 +159,7 @@ fun Anasayfa(navController: NavController){
                                        actionLabel = "Evet")
 
                                    if(sb == SnackbarResult.ActionPerformed){
-                                       sil(kisi.kisi_id)
+                                       anasayfaViewModel.sil(kisi.kisi_id)
                                    }
                                }
                            }) {
