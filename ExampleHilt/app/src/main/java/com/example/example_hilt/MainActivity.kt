@@ -13,26 +13,34 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.example_hilt.ui.theme.Example_HiltTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var kargo : Kargo
+
+    @Inject
+    lateinit var internet : Internet
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             Example_HiltTheme {
-                Anasayfa()
+                Anasayfa(kargo, internet)
             }
         }
     }
 }
 
 @Composable
-fun Anasayfa(){
+fun Anasayfa (kargo: Kargo, internet: Internet){
     LaunchedEffect(key1 = true) {
-        val kargo = Kargo()
+
         kargo.gonder()
 
-        val internet = Internet()
         internet.basvuru()
     }
 }
