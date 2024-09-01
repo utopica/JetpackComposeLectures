@@ -4,8 +4,7 @@ import android.util.Log
 import com.example.jetpackcomposelectures.week4_2_kisiler.data.datasource.KisilerDataSource
 import com.example.jetpackcomposelectures.week4_2_kisiler.data.entity.Kisiler
 
-class KisilerRepository {
-    var kds = KisilerDataSource()
+class KisilerRepository (var kds : KisilerDataSource){
 
     suspend fun kaydet(kisi_ad: String, kisi_tel:String) = kds.kaydet(kisi_ad, kisi_tel)
     //data source'a kisi ad ve kisi tel gönder. tek yönlü olduğu için live data yok. coroutine return yok

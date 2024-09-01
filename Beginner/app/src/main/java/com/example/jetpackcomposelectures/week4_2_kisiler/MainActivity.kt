@@ -10,7 +10,9 @@ import com.example.jetpackcomposelectures.week4_2_kisiler.uix.viewmodel.Anasayfa
 import com.example.jetpackcomposelectures.week4_2_kisiler.uix.viewmodel.KisiDetayViewModel
 import com.example.jetpackcomposelectures.week4_2_kisiler.uix.viewmodel.KisiKayitViewModel
 import com.example.jetpackcomposelectures.week4_2_kisiler.uix.views.SayfaGecisleri
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     val anasayfaViewModel : AnasayfaViewModel by viewModels()
     val kisiKayitViewModel : KisiKayitViewModel by viewModels()

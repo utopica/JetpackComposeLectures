@@ -4,13 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.jetpackcomposelectures.week4_2_kisiler.data.entity.Kisiler
 import com.example.jetpackcomposelectures.week4_2_kisiler.data.repo.KisilerRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AnasayfaViewModel : ViewModel() {
+@HiltViewModel //parametre aktarma özelliği oto yap
+class AnasayfaViewModel @Inject constructor(var krepo : KisilerRepository) : ViewModel() {
 
-    var krepo = KisilerRepository()
     var kisilerListesi = MutableLiveData<List<Kisiler>>()
 
     init{
