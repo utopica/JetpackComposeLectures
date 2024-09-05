@@ -8,7 +8,8 @@ import org.jetbrains.annotations.NotNull
 @Entity(tableName = "kisiler")
 data class Kisiler(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "kisi_id") @NotNull var kisi_id :Int,
-    @ColumnInfo(name = "kisi_ad") @NotNull var kisi_ad :String,
-    @ColumnInfo(name = "kisi_tel") @NotNull var kisi_tel :String
-)
+    @ColumnInfo(name = "kisi_id") @NotNull var kisi_id : Int,
+    @ColumnInfo(name = "kisi_ad") @NotNull var kisi_ad : String,
+    @ColumnInfo(name = "kisi_tel") @NotNull var kisi_tel : String
+) {
+}

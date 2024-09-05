@@ -32,9 +32,9 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideKisilerDao(@ApplicationContext context: Context) : KisilerDao {
+    fun provideKisilerDao(@ApplicationContext context:Context) : KisilerDao{
 
-        var vt = Room.databaseBuilder(context, Veritabani::class.java, "rehber.sqlite")
+        val vt = Room.databaseBuilder(context, Veritabani::class.java, "rehber.sqlite")
             .createFromAsset("rehber.sqlite").build()
 
         return vt.getKisilerDao()
