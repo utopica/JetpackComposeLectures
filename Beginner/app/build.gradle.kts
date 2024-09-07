@@ -71,8 +71,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("cafe.adriel.voyager:voyager-navigator:1.1.0-beta02") //examplevoyage
-    implementation("androidx.navigation:navigation-compose:2.7.6")
-    implementation ("com.google.code.gson:gson:2.10")
 
     implementation("androidx.navigation:navigation-compose:2.7.6") //movie
     implementation ("com.google.code.gson:gson:2.10")
@@ -89,6 +87,4 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation(kotlin("script-runtime"))
-
 }
