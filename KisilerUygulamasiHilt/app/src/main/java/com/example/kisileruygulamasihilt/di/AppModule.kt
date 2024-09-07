@@ -2,6 +2,8 @@ package com.example.kisileruygulamasihilt.di
 
 import com.example.kisileruygulamasihilt.data.datasource.KisilerDataSource
 import com.example.kisileruygulamasihilt.data.repo.KisilerRepository
+import com.example.kisileruygulamasihilt.retrofit.ApiUtils
+import com.example.kisileruygulamasihilt.retrofit.KisilerDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +21,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideKisilerDataSource() : KisilerDataSource {
-        return KisilerDataSource()
+    fun provideKisilerDataSource(kdao: KisilerDao) : KisilerDataSource {
+        return KisilerDataSource(kdao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideKisilerDao() : KisilerDao{
+        return ApiUtils.getKisilerDao()
     }
 }

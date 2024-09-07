@@ -2,10 +2,11 @@ package com.example.kisileruygulamasihilt.data.datasource
 
 import android.util.Log
 import com.example.kisileruygulamasihilt.data.entity.Kisiler
+import com.example.kisileruygulamasihilt.retrofit.KisilerDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class KisilerDataSource {
+class KisilerDataSource (var kdao: KisilerDao){
     suspend fun kaydet(kisi_ad:String,kisi_tel:String){
         Log.e("Kişi Kaydet","$kisi_ad - $kisi_tel")
     }
@@ -19,15 +20,7 @@ class KisilerDataSource {
     }
 
     suspend fun kisileriYukle() : List<Kisiler> = withContext(Dispatchers.IO){
-        val kisilerListesi = ArrayList<Kisiler>()
-        val k1 = Kisiler(1,"Ahmet","1111")
-        val k2 = Kisiler(2,"Zeynep","2222")
-        val k3 = Kisiler(3,"Beyza","3333")
-        kisilerListesi.add(k1)
-        kisilerListesi.add(k2)
-        kisilerListesi.add(k3)
-
-        return@withContext kisilerListesi
+        return@withContext kdao.kisileriYukle().kisiler
     }
 
     suspend fun ara(aramaKelimesi:String) : List<Kisiler> = withContext(Dispatchers.IO){
