@@ -17,21 +17,23 @@ class KisilerDataSource(var kdao : KisilerDao) {
     }
 
     suspend fun guncelle(kisi_id:Int, kisi_ad:String, kisi_tel:String){
-        Log.e("Kisi Guncelle", "$kisi_id - $kisi_ad- $kisi_tel")
+
+        val guncellenenKisi = Kisiler(kisi_id, kisi_ad, kisi_tel)
+
+        kdao.guncelle(guncellenenKisi)
     }
 
     suspend fun sil(kisi_id: Int){
-        Log.e("Kisi Sil", kisi_id.toString())
+
+        val silinenKisi = Kisiler(kisi_id, "","")
+
+        kdao.sil(silinenKisi)
+
     }
 
     suspend fun ara(aramaKelimesi : String) : List<Kisiler> = withContext(Dispatchers.IO){
-        val kisilerListesi = ArrayList<Kisiler>()
 
-        val kisi1 = Kisiler(1, "Ahmet", "1111")
-
-        kisilerListesi.add(kisi1)
-
-        return@withContext kisilerListesi
+        return@withContext kdao.ara(aramaKelimesi)
     }
 
     suspend fun kisileriYukle() : List<Kisiler> = withContext(Dispatchers.IO){

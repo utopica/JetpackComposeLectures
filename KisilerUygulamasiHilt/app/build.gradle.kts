@@ -3,15 +3,15 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
 
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin") //kisiler
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.example.jetpackcomposelectures"
+    namespace = "com.example.kisileruygulamasihilt"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.jetpackcomposelectures"
+        applicationId = "com.example.kisileruygulamasihilt"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -70,25 +70,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("cafe.adriel.voyager:voyager-navigator:1.1.0-beta02") //examplevoyage
     implementation("androidx.navigation:navigation-compose:2.7.6")
     implementation ("com.google.code.gson:gson:2.10")
 
-    implementation("androidx.navigation:navigation-compose:2.7.6") //movie
-    implementation ("com.google.code.gson:gson:2.10")
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1") //kişiler
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
-
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
 
     implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48") //kisiler
-
-    implementation ("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation(kotlin("script-runtime"))
-
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
 }
