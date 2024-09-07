@@ -8,11 +8,12 @@ import kotlinx.coroutines.withContext
 
 class KisilerDataSource (var kdao: KisilerDao){
     suspend fun kaydet(kisi_ad:String,kisi_tel:String){
-        Log.e("Kişi Kaydet","$kisi_ad - $kisi_tel")
+        kdao.kaydet(kisi_ad, kisi_tel)
     }
 
     suspend fun guncelle(kisi_id:Int,kisi_ad:String,kisi_tel:String){
         Log.e("Kişi Güncelle","$kisi_id - $kisi_ad - $kisi_tel")
+
     }
 
     suspend fun sil(kisi_id:Int){
