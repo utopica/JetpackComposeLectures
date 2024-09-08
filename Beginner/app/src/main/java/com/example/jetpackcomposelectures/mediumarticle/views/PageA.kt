@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.jetpackcomposelectures.mediumarticle.data.entity.Users
 import com.example.jetpackcomposelectures.mediumarticle.ui.theme.ButtonColor
 
 class PageA : Screen {
@@ -45,9 +46,10 @@ class PageA : Screen {
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Button(onClick = {
-                    navigator.push(PageB(name, surname))
 
+                    val user = Users(name, surname)
 
+                    navigator.push(PageB(user))
                 },
                     modifier = Modifier.size(160.dp, 75.dp),
                     colors = ButtonDefaults.buttonColors(ButtonColor)) {
