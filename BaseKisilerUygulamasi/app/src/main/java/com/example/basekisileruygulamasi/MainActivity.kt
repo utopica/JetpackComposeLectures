@@ -4,44 +4,27 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
 import com.example.basekisileruygulamasi.ui.theme.BaseKisilerUygulamasiTheme
+import com.example.basekisileruygulamasi.uix.viewmodel.AnasayfaViewModel
+import com.example.basekisileruygulamasi.uix.viewmodel.KisiDetayViewModel
+import com.example.basekisileruygulamasi.uix.viewmodel.KisiKayitViewModel
+import com.example.basekisileruygulamasi.uix.views.SayfaGecisleri
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    val anasayfaViewModel: AnasayfaViewModel by viewModels()
+    val kisiKayitViewModel: KisiKayitViewModel by viewModels()
+    val kisiDetayViewModel: KisiDetayViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             BaseKisilerUygulamasiTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                SayfaGecisleri(anasayfaViewModel,kisiKayitViewModel,kisiDetayViewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BaseKisilerUygulamasiTheme {
-        Greeting("Android")
     }
 }
