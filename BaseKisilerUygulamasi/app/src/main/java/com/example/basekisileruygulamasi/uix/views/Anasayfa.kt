@@ -128,9 +128,9 @@ fun Anasayfa(navController: NavController,anasayfaViewModel: AnasayfaViewModel){
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Column(modifier = Modifier.padding(all = 10.dp)) {
-                                Text(text = kisi.kisi_ad, fontSize = 20.sp)
+                                Text(text = kisi.kisi_ad!!, fontSize = 20.sp)
                                 Spacer(modifier = Modifier.size(10.dp))
-                                Text(text = kisi.kisi_tel)
+                                Text(text = kisi.kisi_tel!!)
                             }
                             IconButton(onClick = {
                                 scope.launch {
@@ -140,7 +140,7 @@ fun Anasayfa(navController: NavController,anasayfaViewModel: AnasayfaViewModel){
                                     )
 
                                     if(sb == SnackbarResult.ActionPerformed){
-                                        anasayfaViewModel.sil(kisi.kisi_id)
+                                        anasayfaViewModel.sil(kisi.kisi_id!!)
                                     }
                                 }
                             }) {

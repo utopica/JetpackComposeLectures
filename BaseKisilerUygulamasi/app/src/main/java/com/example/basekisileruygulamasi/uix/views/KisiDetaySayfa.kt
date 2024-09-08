@@ -28,8 +28,8 @@ fun KisiDetaySayfa(gelenKisi:Kisiler,kisiDetayViewModel: KisiDetayViewModel){
     val tfKisiTel = remember { mutableStateOf("") }
 
     LaunchedEffect(key1 = true) {
-        tfKisiAd.value = gelenKisi.kisi_ad
-        tfKisiTel.value = gelenKisi.kisi_tel
+        tfKisiAd.value = gelenKisi.kisi_ad!!
+        tfKisiTel.value = gelenKisi.kisi_tel!!
     }
 
     Scaffold(topBar = { TopAppBar(title = { Text(text = "Kişi Detay") }) }) { paddingValues ->
@@ -55,7 +55,7 @@ fun KisiDetaySayfa(gelenKisi:Kisiler,kisiDetayViewModel: KisiDetayViewModel){
             Button(
                 modifier = Modifier.size(250.dp,50.dp),
                 onClick = {
-                    kisiDetayViewModel.guncelle(gelenKisi.kisi_id,tfKisiAd.value,tfKisiTel.value)
+                    kisiDetayViewModel.guncelle(gelenKisi.kisi_id!!,tfKisiAd.value,tfKisiTel.value)
                 }) { Text(text = "GÜNCELLE") }
         }
     }

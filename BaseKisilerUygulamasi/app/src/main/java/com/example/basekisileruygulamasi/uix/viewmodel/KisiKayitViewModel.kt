@@ -12,8 +12,8 @@ import javax.inject.Inject
 class KisiKayitViewModel @Inject constructor(var krepo:KisilerRepository) : ViewModel() {
 
     fun kaydet(kisi_ad:String,kisi_tel:String){
-        CoroutineScope(Dispatchers.Main).launch {
+
             krepo.kaydet(kisi_ad, kisi_tel)
-        }
+
     }
 }
