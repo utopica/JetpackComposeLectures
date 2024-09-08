@@ -28,6 +28,9 @@ class PageA : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
+        val name = "John"
+        val surname = "Doe"
+
         Scaffold (
             topBar = {
                 CenterAlignedTopAppBar(title = { Text(text = "Page A", fontSize = 32.sp) })
@@ -42,7 +45,7 @@ class PageA : Screen {
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Button(onClick = {
-                    navigator.push(PageB())
+                    navigator.push(PageB(name, surname))
 
 
                 },
