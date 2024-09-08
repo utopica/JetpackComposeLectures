@@ -34,10 +34,11 @@ class PageA : Screen {
 
         Scaffold (
             topBar = {
-                CenterAlignedTopAppBar(title = { Text(text = "Page A", fontSize = 32.sp) })
+                CenterAlignedTopAppBar(title = { Text(text = "Page A", fontSize = 28.sp) })
             }
         ){
-                paddingValues ->
+            paddingValues ->
+
             Column (
                 modifier = Modifier
                     .fillMaxSize()
@@ -45,22 +46,17 @@ class PageA : Screen {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                Button(onClick = {
-
-                    val user = Users(name, surname)
-
-                    navigator.push(PageB(user))
-                },
-                    modifier = Modifier.size(160.dp, 75.dp),
-                    colors = ButtonDefaults.buttonColors(ButtonColor)) {
-
-                    Text(text = "Go to Page B", fontSize = 18.sp)
+                Button(
+                    onClick = {
+                        val user = Users(name, surname)
+                        navigator.push(PageB(user))
+                        },
+                    modifier = Modifier.size(150.dp, 50.dp),
+                    colors = ButtonDefaults.buttonColors(ButtonColor)
+                ) {
+                    Text(text = "Go to Page B", fontSize = 17.sp)
                 }
             }
-
         }
     }
-
 }
-
-

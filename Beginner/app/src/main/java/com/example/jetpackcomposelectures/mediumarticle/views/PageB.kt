@@ -22,18 +22,18 @@ class PageB(var user : Users) : Screen {
     override fun Content() {
         Scaffold (
             topBar = {
-                CenterAlignedTopAppBar(title = { Text(text = "Page B", fontSize = 32.sp) })
+                CenterAlignedTopAppBar(title = { Text(text = "Page B", fontSize = 28.sp) })
             }
         ){
-                paddingValues ->
+            paddingValues ->
             Column (
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(text = "Merhaba ${user.name} ${user.surname}!", fontSize = 20.sp)
+            ) {
+                Text(text = "Merhaba ${user.name} ${user.surname}!", fontSize = 18.sp)
             }
 
         }
