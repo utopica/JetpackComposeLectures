@@ -14,7 +14,7 @@
         android:theme="@style/Theme.JetpackComposeLectures"
         tools:targetApi="31">
         <activity
-            android:name=".week5_2_kisilerhilt.MainActivity"
+            android:name=".mediumarticle.MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.JetpackComposeLectures">

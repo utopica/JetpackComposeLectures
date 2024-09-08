@@ -8,6 +8,4 @@ import com.example.jetpackcomposelectures.week4_2_kisiler.data.entity.Kisiler
 abstract class Veritabani : RoomDatabase(){
 
     abstract fun getKisilerDao() : KisilerDao
-
-
 }
