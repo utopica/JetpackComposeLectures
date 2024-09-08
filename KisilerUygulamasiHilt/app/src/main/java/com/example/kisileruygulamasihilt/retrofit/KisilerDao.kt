@@ -14,9 +14,9 @@ interface KisilerDao {
     //kisiler/tum_kisiler.php -> apiUrl
 
     @GET("kisiler/tum_kisiler.php")
-    suspend fun kisileriYukle () : KisilerCevap
+    suspend fun kisileriYukle() : KisilerCevap
 
-    @POST("kisiler/tum_kisiler.php")
+    @POST("kisiler/insert_kisiler.php")
     @FormUrlEncoded
     suspend fun kaydet(@Field("kisi_ad") kisi_ad:String,
                        @Field("kisi_tel") kisi_tel:String) : CRUDCevap
