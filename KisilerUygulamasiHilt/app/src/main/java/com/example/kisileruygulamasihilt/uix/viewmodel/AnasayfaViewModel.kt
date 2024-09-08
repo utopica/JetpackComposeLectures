@@ -33,7 +33,10 @@ class AnasayfaViewModel @Inject constructor(var krepo:KisilerRepository) : ViewM
 
     fun ara(aramaKelimesi:String){
         CoroutineScope(Dispatchers.Main).launch {
-            kisilerListesi.value = krepo.ara(aramaKelimesi)
+            try {
+                kisilerListesi.value = krepo.ara(aramaKelimesi)
+
+            }catch (e:Exception){}
         }
     }
 }
