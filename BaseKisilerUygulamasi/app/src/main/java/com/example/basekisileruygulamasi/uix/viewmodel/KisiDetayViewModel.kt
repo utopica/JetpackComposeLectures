@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class KisiDetayViewModel @Inject constructor(var krepo:KisilerRepository) : ViewModel() {
 
-    fun guncelle(kisi_id:Int,kisi_ad:String,kisi_tel:String) {
+    fun guncelle(kisi_id:String,kisi_ad:String,kisi_tel:String) {
         CoroutineScope(Dispatchers.Main).launch {
             krepo.guncelle(kisi_id, kisi_ad, kisi_tel)
         }

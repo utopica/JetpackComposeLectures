@@ -18,7 +18,7 @@ class AnasayfaViewModel @Inject constructor(var krepo:KisilerRepository) : ViewM
         kisileriYukle()
     }
 
-    fun sil(kisi_id:Int) {
+    fun sil(kisi_id:String) {
         CoroutineScope(Dispatchers.Main).launch {
             krepo.sil(kisi_id)
             kisileriYukle()
@@ -27,13 +27,13 @@ class AnasayfaViewModel @Inject constructor(var krepo:KisilerRepository) : ViewM
 
     fun kisileriYukle(){
         CoroutineScope(Dispatchers.Main).launch {
-            kisilerListesi.value = krepo.kisileriYukle()
+            kisilerListesi = krepo.kisileriYukle()
         }
     }
 
     fun ara(aramaKelimesi:String){
         CoroutineScope(Dispatchers.Main).launch {
-            kisilerListesi.value = krepo.ara(aramaKelimesi)
+            kisilerListesi = krepo.ara(aramaKelimesi)
         }
     }
 }
