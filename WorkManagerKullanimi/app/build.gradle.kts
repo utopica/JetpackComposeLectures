@@ -66,4 +66,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation("com.google.accompanist:accompanist-permissions:0.31.0-alpha") //izin kontrolü
 }
